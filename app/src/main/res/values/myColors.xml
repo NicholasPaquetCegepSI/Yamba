@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="monBleu">#8facef</color>
+    <color name="blancTransparent">#c0ffffff</color>
+    <color name="monJaune">#FFC107</color>
+</resources>

@@ -9,6 +9,7 @@
     android:paddingRight="16dp"
     android:paddingTop="16dp"
     android:orientation="vertical"
+    android:background="@color/monJaune"
     tools:context=".StatusActivity">
 
 
@@ -19,6 +20,7 @@
         android:layout_gravity="center_horizontal"
         android:gravity="center_horizontal"
         android:textSize="25sp"
+        android:paddingBottom="16dp"
         android:text="@string/titleStatusUpdate" />
 
     <EditText
@@ -30,18 +32,19 @@
         android:textSize="20sp"
         android:inputType="textMultiLine"
         android:layout_marginBottom="22dp"
+        android:background="@color/blancTransparent"
+        android:padding="16dp"
         tools:ignore="Autofill" />
 
     <Button
         android:id="@+id/buttonUpdate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:drawable/btn_default"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/monBleu"
         android:clickable="true"
         android:focusable="true"
-        android:layout_gravity="center_horizontal"
         android:text="@string/buttonUpdate"
         android:textAllCaps="false"
-        android:textSize="22sp"
-        />
+        android:textSize="22sp" />
 </LinearLayout>
