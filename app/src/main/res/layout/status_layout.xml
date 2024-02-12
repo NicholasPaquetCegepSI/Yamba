@@ -13,20 +13,16 @@
 
 
     <TextView
+        style="@style/titleStyle"
         android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center_horizontal"
-        android:textSize="25sp"
         android:text="@string/titleStatusUpdate" />
 
     <EditText
         android:id="@+id/editStatus"
+        android:hint="@string/hintStatus"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:hint="@string/hintStatus"
         android:textSize="20sp"
         android:inputType="textMultiLine"
         android:layout_marginBottom="22dp"
@@ -41,6 +37,32 @@
         android:focusable="true"
         android:layout_gravity="center_horizontal"
         android:text="@string/buttonUpdate"
+        android:textAllCaps="false"
+        android:textSize="22sp"
+        />
+
+    <Button
+        android:id="@+id/buttonStartUpdaterService"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/btn_default"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/buttonStartUpdateService"
+        android:textAllCaps="false"
+        android:textSize="22sp"
+        />
+
+    <Button
+        android:id="@+id/buttonStopUpdaterService"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/btn_default"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/buttonStopUpdateService"
         android:textAllCaps="false"
         android:textSize="22sp"
         />
