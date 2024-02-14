@@ -21,7 +21,6 @@ import social.bigbone.api.exception.BigBoneRequestException;
 public class UpdaterService extends Service {
     private static final String TAG = "UpdaterService";
     boolean updaterServiceDejaDemarre = false;
-    MastodonClient client;
     Handler handler;
     final String[] message = new String[1];
     String id;
@@ -60,10 +59,8 @@ public class UpdaterService extends Service {
 
                 while (updaterServiceIsRequesting) {
                     try {
-                        client = new MastodonClient.Builder(getString(R.string.instanceHostname)).accessToken(
-                                getString(R.string.accessToken)).build();
                         // Extraction des 5 derniers toots du timeline de l'usager.
-                        Pageable<Status> timeline = client.timelines().getHomeTimeline(new Range(null, null, null, 5))
+                        Pageable<Status> timeline = ((YambaApplication) getApplication()).getClient().timelines().getHomeTimeline(new Range(null, null, null, 5))
                                 .execute();
                         Log.d(TAG, "Thread run(): " + getString(R.string.timelineReceived));
                         message[0] = getString(R.string.timelineReceived);

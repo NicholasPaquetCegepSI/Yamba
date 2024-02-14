@@ -26,7 +26,6 @@ public class StatusActivity extends AppCompatActivity implements View.OnClickLis
     EditText editStatus;
     Button buttonUpdate;
     Intent intentUpdaterService;
-    MastodonClient client;
     MastodonRequest<Status> request;
     Handler handler;
     final String[] message = new String[1];
@@ -59,9 +58,7 @@ public class StatusActivity extends AppCompatActivity implements View.OnClickLis
 
                 new Thread(() -> {
                     try {
-                        client = new MastodonClient.Builder(getString(R.string.instanceHostname)).accessToken(
-                                getString(R.string.accessToken)).build();
-                        request = client.statuses().postStatus(status);
+                        request = ((YambaApplication)getApplication()).getClient().statuses().postStatus(status);
                         request.execute();
 
                         Log.d(TAG, "onClick(): " + getString(R.string.tootIsSent) + " : " + status);
