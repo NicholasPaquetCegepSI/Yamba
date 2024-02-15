@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <EditTextPreference
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:defaultValue="60"
+        android:inputType="number"
+        android:key="delay"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary="@string/delaySummary"
+        android:title="@string/delay"
+        app:iconSpaceReserved="false"
+        />
+
+    <EditTextPreference
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:defaultValue="5"
+        android:inputType="number"
+        android:key="numberOfToots"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary="@string/numberOfTootsSummary"
+        android:title="@string/numberOfToots"
+        app:iconSpaceReserved="false"
+        />
+</PreferenceScreen>

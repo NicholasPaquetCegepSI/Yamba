@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Yamba</string>
-    <string name="titleStatusUpdate">Envoi d\'un toot à Mastodon</string>
+    <string name="titleStatusUpdate">Envoi d\'un toot</string>
     <string name="hintStatus">Veuillez saisir votre toot.</string>
     <string name="buttonUpdate">Envoyer le toot</string>
 
@@ -12,9 +12,16 @@
     <string name="updaterServiceStopped">UpdaterService n\'est plus en fonction</string>
 
     <string name="tootIsSent">Votre toot a été envoyé à Mastodon</string>
-    <string name="timelineReceived">Le timeline de l\'usager a été recupéré de Mastodon</string>
+    <string name="timelineReceived">Le timeline de l\'usager a été récupéré de Mastodon</string>
     <string name="bigBoneException">Impossible d\'accéder au serveur Mastodon </string>
-    <string name="exception">Un problème est survenu lors de l\'éxécution</string>
+    <string name="exception">Un problème est survenu lors de l\'execution</string>
+
+    <string name="titlePrefs">Préférences</string>
+    <string name="delay">Délai</string>
+    <string name="delaySummary">Veuillez saisir le délai entre deux récupérations de toots
+        (sec)</string>
+    <string name="numberOfToots">Nombre de toots</string>
+    <string name="numberOfTootsSummary">Veuillez saisir le nombre de toots à récupérer</string>
 
     <string name="instanceHostname">mastodon.social</string>
     <string name="accessToken">3mDybADkOOU2oP4nKPmpo88kN7FeMpskiTzICaKqwnU</string>

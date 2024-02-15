@@ -2,9 +2,11 @@ package net.info420.yamba;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -26,9 +28,11 @@ public class StatusActivity extends AppCompatActivity implements View.OnClickLis
     EditText editStatus;
     Button buttonUpdate;
     Intent intentUpdaterService;
+    Intent intentPrefsActivity;
     MastodonRequest<Status> request;
     Handler handler;
     final String[] message = new String[1];
+    Toolbar myToolBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +42,16 @@ public class StatusActivity extends AppCompatActivity implements View.OnClickLis
         // Composantes
         editStatus = findViewById(R.id.editStatus);
         buttonUpdate = findViewById(R.id.buttonUpdate);
+        myToolBar = findViewById(R.id.toolbar);
+
+        // Ajout de myToolBar
+        myToolBar.setTitle("");
+        setSupportActionBar(myToolBar);
+        myToolBar.setTitle(R.string.titleStatusUpdate);
+        myToolBar.setTitleTextColor(Color.WHITE);
 
         intentUpdaterService = new Intent(this, UpdaterService.class);
+        intentPrefsActivity = new Intent(this, PrefsActivity.class);
 
         // Listeners
         buttonUpdate.setOnClickListener(this);
@@ -58,7 +70,7 @@ public class StatusActivity extends AppCompatActivity implements View.OnClickLis
 
                 new Thread(() -> {
                     try {
-                        request = ((YambaApplication)getApplication()).getClient().statuses().postStatus(status);
+                        request = ((YambaApplication) getApplication()).getClient().statuses().postStatus(status);
                         request.execute();
 
                         Log.d(TAG, "onClick(): " + getString(R.string.tootIsSent) + " : " + status);
@@ -92,12 +104,12 @@ public class StatusActivity extends AppCompatActivity implements View.OnClickLis
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
 
-        if (itemId == R.id.itemStartUpdaterService) {
+        if (itemId == R.id.itemStartUpdaterService)
             startService(intentUpdaterService);
-        } else if (itemId == R.id.itemStopUpdaterService) {
+        else if (itemId == R.id.itemStopUpdaterService)
             stopService(intentUpdaterService);
-        }
-
+        else if (itemId == R.id.itemPrefs)
+            startActivity(intentPrefsActivity);
         return true;
     }
 }

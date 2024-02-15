@@ -4,40 +4,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="40dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="16dp"
     android:orientation="vertical"
-    tools:context=".StatusActivity">
+    android:paddingBottom="40dp"
+    tools:context=".StatusActivity"
+    >
 
+    <include layout="@layout/toolbar_layout" />
 
-    <TextView
-        style="@style/titleStyle"
-        android:id="@+id/textView"
-        android:text="@string/titleStatusUpdate" />
-
-    <EditText
-        android:id="@+id/editStatus"
-        android:hint="@string/hintStatus"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:textSize="20sp"
-        android:inputType="textMultiLine"
-        android:layout_marginBottom="22dp"
-        tools:ignore="Autofill" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingTop="16dp"
+        android:paddingRight="16dp"
+        >
 
-    <Button
-        android:id="@+id/buttonUpdate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:drawable/btn_default"
-        android:clickable="true"
-        android:focusable="true"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/buttonUpdate"
-        android:textAllCaps="false"
-        android:textSize="22sp"
-        />
+        <TextView
+            android:id="@+id/textView"
+            style="@style/titleStyle"
+            android:text="@string/titleStatusUpdate"
+            />
+
+        <EditText
+            android:id="@+id/editStatus"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="22dp"
+            android:layout_weight="1"
+            android:hint="@string/hintStatus"
+            android:inputType="textMultiLine"
+            android:textSize="20sp"
+            tools:ignore="Autofill"
+            />
+
+        <Button
+            android:id="@+id/buttonUpdate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@android:drawable/btn_default"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/buttonUpdate"
+            android:textAllCaps="false"
+            android:textSize="22sp"
+            />
+    </LinearLayout>
+
+
 </LinearLayout>

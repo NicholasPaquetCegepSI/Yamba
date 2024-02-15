@@ -20,4 +20,12 @@
         android:visible="true"
         app:showAsAction="ifRoom|withText"
         />
+
+    <item
+        android:id="@+id/itemPrefs"
+        android:enabled="true"
+        android:title="@string/titlePrefs"
+        android:visible="true"
+        app:showAsAction="never"
+        />
 </menu>
