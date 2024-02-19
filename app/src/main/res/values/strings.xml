@@ -18,11 +18,25 @@
 
     <string name="titlePrefs">Préférences</string>
     <string name="delay">Délai</string>
-    <string name="delaySummary">Veuillez saisir le délai entre deux récupérations de toots
-        (sec)</string>
+    <string name="delaySummary">Délai entre deux récupérations de toots</string>
     <string name="numberOfToots">Nombre de toots</string>
     <string name="numberOfTootsSummary">Veuillez saisir le nombre de toots à récupérer</string>
 
     <string name="instanceHostname">mastodon.social</string>
     <string name="accessToken">3mDybADkOOU2oP4nKPmpo88kN7FeMpskiTzICaKqwnU</string>
+
+
+    <string-array name="delayNames">
+        <item>30 secondes</item>
+        <item>1 minute</item>
+        <item>5 minutes</item>
+        <item>30 minutes</item>
+    </string-array>
+
+    <string-array name="delayValues">
+        <item>30</item>
+        <item>60</item>
+        <item>300</item>
+        <item>1800</item>
+    </string-array>
 </resources>

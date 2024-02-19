@@ -33,7 +33,7 @@ public class UpdaterService extends Service {
     String nomUsager;
     String texteBrut;
     String texteFinal;
-    private static final long DELAY = 30000;
+    //    private static final long DELAY = 30000;
     boolean updaterServiceIsRequesting;
 
     public UpdaterService() {
@@ -59,8 +59,11 @@ public class UpdaterService extends Service {
 
                 while (updaterServiceIsRequesting) {
                     try {
+                        int limit = Integer.parseInt(((YambaApplication) getApplication()).getNumberOfToots());
+
                         // Extraction des 5 derniers toots du timeline de l'usager.
-                        Pageable<Status> timeline = ((YambaApplication) getApplication()).getClient().timelines().getHomeTimeline(new Range(null, null, null, 5))
+                        Pageable<Status> timeline = ((YambaApplication) getApplication()).getClient().timelines()
+                                .getHomeTimeline(new Range(null, null, null, limit))
                                 .execute();
                         Log.d(TAG, "Thread run(): " + getString(R.string.timelineReceived));
                         message[0] = getString(R.string.timelineReceived);
@@ -134,7 +137,8 @@ public class UpdaterService extends Service {
                             }
 
                         });
-                        Thread.sleep(DELAY);
+                        long delay = Long.parseLong(((YambaApplication) getApplication()).getDelay()) * 1000;
+                        Thread.sleep(delay);
                     } catch (BigBoneRequestException e) {
                         Log.d(TAG, "Thread run(): " + getString(R.string.bigBoneException), e);
                         message[0] = getString(R.string.bigBoneException);

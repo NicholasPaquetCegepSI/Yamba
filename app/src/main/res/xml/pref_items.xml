@@ -3,11 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
 
-    <EditTextPreference
+    <ListPreference
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:defaultValue="60"
-        android:inputType="number"
+        android:entries="@array/delayNames"
+        android:entryValues="@array/delayValues"
         android:key="delay"
         android:selectAllOnFocus="true"
         android:singleLine="true"
