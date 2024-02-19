@@ -39,4 +39,9 @@
         <item>300</item>
         <item>1800</item>
     </string-array>
+
+    <string name="myMusicServiceStarted">MyMusicService est en fonction</string>
+    <string name="myMusicServiceStopped">MyMusicService n\'est pas en fonction</string>
+    <string name="myMusicServiceNotification">Appuyer sur cette notification pour arrêter
+        ce Service</string>
 </resources>
