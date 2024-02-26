@@ -15,6 +15,7 @@ public class YambaApplication extends Application implements SharedPreferences.O
     SharedPreferences prefs;
     private String delay = null;
     private String numberOfToots = null;
+    private StatusData statusData;
 
     @Override
     public void onCreate() {
@@ -31,6 +32,7 @@ public class YambaApplication extends Application implements SharedPreferences.O
         prefs.registerOnSharedPreferenceChangeListener(this);
         //        delay = prefs.getString("delay", "60");
         //        numberOfToots = prefs.getString("numberOfToots", "5");
+        statusData = new StatusData(this);
     }
 
 
@@ -61,5 +63,9 @@ public class YambaApplication extends Application implements SharedPreferences.O
 
         // Confirmation de la préférence modifiée
         Log.d(TAG, "onSharedPreferenceChanged(): " + key);
+    }
+
+    public StatusData getStatusData() {
+        return statusData;
     }
 }

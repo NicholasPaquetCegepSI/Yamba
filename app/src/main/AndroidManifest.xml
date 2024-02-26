@@ -8,6 +8,9 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
+    <permission android:name="net.info420.yamba.permission.MY_MUSIC_SERVICE"
+        android:protectionLevel="dangerous"/>
+
     <application
         android:name=".YambaApplication"
         android:allowBackup="true"
@@ -45,6 +48,7 @@
             android:name=".MyMusicService"
             android:enabled="true"
             android:exported="true"
+            android:permission="android.permission.CAMERA"
             />
 
         <activity
