@@ -28,4 +28,11 @@
         android:visible="true"
         app:showAsAction="never"
         />
+    <item
+        android:id="@+id/itemTimeline"
+        android:enabled="true"
+        android:title="@string/titleTimeline"
+        android:visible="true"
+        app:showAsAction="never"
+        />
 </menu>

@@ -29,6 +29,7 @@ public class StatusActivity extends AppCompatActivity implements View.OnClickLis
     Button buttonUpdate;
     Intent intentUpdaterService;
     Intent intentPrefsActivity;
+    Intent intentTimelineActivity;
     MastodonRequest<Status> request;
     Handler handler;
     final String[] message = new String[1];
@@ -52,6 +53,7 @@ public class StatusActivity extends AppCompatActivity implements View.OnClickLis
 
         intentUpdaterService = new Intent(this, UpdaterService.class);
         intentPrefsActivity = new Intent(this, PrefsActivity.class);
+        intentTimelineActivity = new Intent(this, TimelineActivity.class);
 
         // Listeners
         buttonUpdate.setOnClickListener(this);
@@ -110,6 +112,8 @@ public class StatusActivity extends AppCompatActivity implements View.OnClickLis
             stopService(intentUpdaterService);
         else if (itemId == R.id.itemPrefs)
             startActivity(intentPrefsActivity);
+        else if (itemId == R.id.itemTimeline)
+            startActivity(intentTimelineActivity);
         return true;
     }
 }

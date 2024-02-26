@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Yamba</string>
     <string name="titleStatusUpdate">Envoi d\'un toot</string>
+    <string name="titleTimeline">Fil Mastodon</string>
     <string name="hintStatus">Veuillez saisir votre toot.</string>
     <string name="buttonUpdate">Envoyer le toot</string>
 
@@ -47,4 +48,6 @@
 
     <string name="sql">create table statuses (_id int primary key, c_createdAt int, c_user
         text, c_text text)</string>
+
+
 </resources>
