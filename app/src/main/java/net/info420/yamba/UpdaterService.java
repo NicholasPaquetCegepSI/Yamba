@@ -12,7 +12,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import social.bigbone.MastodonClient;
 import social.bigbone.api.Pageable;
 import social.bigbone.api.Range;
 import social.bigbone.api.entity.Status;
@@ -23,7 +22,7 @@ public class UpdaterService extends Service {
     boolean updaterServiceDejaDemarre = false;
     Handler handler;
     final String[] message = new String[1];
-    String id;
+    String idToot;
     String dateIOS8601;
     SimpleDateFormat formatDateISO8601;
     Date dateJava;
@@ -72,7 +71,7 @@ public class UpdaterService extends Service {
                         timeline.getPart().forEach(status -> {
                             try {
                                 // Extraction de l'identifiant du toot.
-                                id = status.getId();
+                                idToot = status.getId();
 
                                 // Extraction de la date sous la norme ISO 8601.
                                 // La date extraite de type PrecisionDateTime. Elle est convertie en chaîne.
@@ -119,7 +118,7 @@ public class UpdaterService extends Service {
                                 texteFinal = status.getContent().replaceAll("<[^>]*>", "");
 
                                 // Insertion au Logcat des diverses données extraites du toot.
-                                Log.d(TAG, "Id du toot : " + id);
+                                Log.d(TAG, "Id du toot : " + idToot);
                                 Log.d(TAG, "Date ISO 8601 : " + dateIOS8601);
                                 Log.d(TAG, "Date Java : " + dateJava);
                                 Log.d(TAG, "Temps en millisecondes : " + tempsMillisecondes);
@@ -129,6 +128,7 @@ public class UpdaterService extends Service {
                                 Log.d(TAG, "Identifiant de l'usager : " + idUsager);
                                 Log.d(TAG, "Nom de l'usager : " + nomUsager);
 
+                                ((YambaApplication) getApplication()).getStatusData().insert(status);
 
                             } catch (ParseException e) {
                                 Log.d(TAG, "Thread run(): " + getString(R.string.exception), e);
