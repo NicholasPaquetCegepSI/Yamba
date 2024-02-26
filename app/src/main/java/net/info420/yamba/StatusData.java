@@ -53,8 +53,7 @@ public class StatusData {
 
         // Création du profil/modèle de la date extraite sous forme texte, afin de pouvoir la
         // convertir en Date Java.
-        formatDateISO8601 = new SimpleDateFormat(
-                "'ExactTime(instant='yyyy-MM-dd'T'HH:mm:ss.SSS'Z')");
+        formatDateISO8601 = new SimpleDateFormat("'ExactTime(instant='yyyy-MM-dd'T'HH:mm:ss.SSS'Z')");
 
         // Création d'une date Java, à partir de la date extraite sous forme de texte et de son
         // profil/modèle.
@@ -74,11 +73,11 @@ public class StatusData {
         texteFinal = status.getContent().replaceAll("<[^>]*>", "");
         fieldsValues.put(C_TEXT, texteFinal);
 
-        db.insert(TABLE_NAME, null, fieldsValues);
-        Log.d(
-                TAG,
-                String.format("insert() : Insertion du Status/toot \"%s: %s\" dans la BD", nomUsager, texteFinal)
-        );
+
+        if (db.insertWithOnConflict(TABLE_NAME, null, fieldsValues, SQLiteDatabase.CONFLICT_IGNORE) != -1)
+            Log.d(TAG,
+                  String.format("insert() : Insertion du Status/toot \"%s: %s\" dans la BD", nomUsager, texteFinal)
+            );
         db.close();
     }
 
