@@ -23,7 +23,7 @@ public class StatusData {
     private SQLiteDatabase db;
     public static final String DB_NAME = "timeline.db";
     public static final String TABLE_NAME = "statuses";
-    public static int DB_VERSION = 1;
+    public static int DB_VERSION = 3;
     public static final String C_ID = BaseColumns._ID;
     public static final String C_CREATED_AT = "c_createdAt";
     public static final String C_USER = "c_user";
@@ -94,13 +94,13 @@ public class StatusData {
                                        C_CREATED_AT, C_USER, C_TEXT
             );
             db.execSQL(sql);
-            Log.d(TAG, "onCreate(): Commande SQL \"" + sql + "\"exécutée");
+            Log.d(TAG, "onCreate(): Commande SQL \"" + sql + "\" exécutée");
         }
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             db.execSQL("drop table if exists " + TABLE_NAME);
-            Log.d(TAG, "onUpgrade(): Table \"" + TABLE_NAME + "\"détruite");
+            Log.d(TAG, "onUpgrade(): Table \"" + TABLE_NAME + "\" détruite");
             onCreate(db);
             Log.d(TAG, "onUpgrade(): Mise à jour de la BD de la version " + oldVersion + " à la version " + newVersion);
         }
