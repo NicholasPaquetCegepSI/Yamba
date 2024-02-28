@@ -18,7 +18,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import social.bigbone.MastodonClient;
 import social.bigbone.MastodonRequest;
 import social.bigbone.api.entity.Status;
 import social.bigbone.api.exception.BigBoneRequestException;
@@ -27,9 +26,6 @@ public class StatusActivity extends AppCompatActivity implements View.OnClickLis
     private static final String TAG = "StatusActivity";
     EditText editStatus;
     Button buttonUpdate;
-    Intent intentUpdaterService;
-    Intent intentPrefsActivity;
-    Intent intentTimelineActivity;
     MastodonRequest<Status> request;
     Handler handler;
     final String[] message = new String[1];
@@ -50,10 +46,6 @@ public class StatusActivity extends AppCompatActivity implements View.OnClickLis
         setSupportActionBar(myToolBar);
         myToolBar.setTitle(R.string.titleStatusUpdate);
         myToolBar.setTitleTextColor(Color.WHITE);
-
-        intentUpdaterService = new Intent(this, UpdaterService.class);
-        intentPrefsActivity = new Intent(this, PrefsActivity.class);
-        intentTimelineActivity = new Intent(this, TimelineActivity.class);
 
         // Listeners
         buttonUpdate.setOnClickListener(this);
@@ -85,35 +77,5 @@ public class StatusActivity extends AppCompatActivity implements View.OnClickLis
                 }).start();
                 break;
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        stopService(intentUpdaterService);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int itemId = item.getItemId();
-
-        if (itemId == R.id.itemStartUpdaterService)
-            startService(intentUpdaterService);
-        else if (itemId == R.id.itemStopUpdaterService)
-            stopService(intentUpdaterService);
-        else if (itemId == R.id.itemPrefs)
-            startActivity(intentPrefsActivity);
-        else if (itemId == R.id.itemTimeline)
-            startActivity(intentTimelineActivity);
-        return true;
     }
 }

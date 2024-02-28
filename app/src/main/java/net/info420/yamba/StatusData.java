@@ -2,6 +2,7 @@ package net.info420.yamba;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
@@ -23,7 +24,7 @@ public class StatusData {
     private SQLiteDatabase db;
     public static final String DB_NAME = "timeline.db";
     public static final String TABLE_NAME = "statuses";
-    public static int DB_VERSION = 3;
+    public static int DB_VERSION = 4;
     public static final String C_ID = BaseColumns._ID;
     public static final String C_CREATED_AT = "c_createdAt";
     public static final String C_USER = "c_user";
@@ -41,7 +42,8 @@ public class StatusData {
         dbHelper = new DBHelper();
     }
 
-    public void insert(Status status) throws ParseException {
+    public long insert(Status status) throws ParseException {
+        long insertResult;
         ContentValues fieldsValues = new ContentValues();
         db = dbHelper.getWritableDatabase();
 
@@ -73,12 +75,24 @@ public class StatusData {
         texteFinal = status.getContent().replaceAll("<[^>]*>", "");
         fieldsValues.put(C_TEXT, texteFinal);
 
-
-        if (db.insertWithOnConflict(TABLE_NAME, null, fieldsValues, SQLiteDatabase.CONFLICT_IGNORE) != -1)
-            Log.d(TAG,
-                  String.format("insert() : Insertion du Status/toot \"%s: %s\" dans la BD", nomUsager, texteFinal)
+        insertResult = db.insertWithOnConflict(TABLE_NAME, null, fieldsValues, SQLiteDatabase.CONFLICT_IGNORE);
+        if (insertResult != -1)
+            Log.d(
+                    TAG,
+                    String.format("insert() : Insertion du Status/toot \"%s: %s\" dans la BD", nomUsager, texteFinal)
             );
         db.close();
+
+        return insertResult;
+    }
+
+    public Cursor query() {
+        Cursor cursor;
+
+        db = dbHelper.getReadableDatabase();
+        cursor = db.query(TABLE_NAME, null, null, null, null, null, C_CREATED_AT + " DESC");
+
+        return cursor;
     }
 
     private class DBHelper extends SQLiteOpenHelper {

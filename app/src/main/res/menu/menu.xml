@@ -29,9 +29,9 @@
         app:showAsAction="never"
         />
     <item
-        android:id="@+id/itemTimeline"
+        android:id="@+id/itemStartStatusActivity"
         android:enabled="true"
-        android:title="@string/titleTimeline"
+        android:title="@string/titleStatusUpdate"
         android:visible="true"
         app:showAsAction="never"
         />

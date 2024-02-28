@@ -34,6 +34,7 @@ public class UpdaterService extends Service {
     String texteFinal;
     //    private static final long DELAY = 30000;
     boolean updaterServiceIsRequesting;
+    int newTootsCount = 0;
 
     public UpdaterService() {
     }
@@ -128,15 +129,23 @@ public class UpdaterService extends Service {
                                 Log.d(TAG, "Identifiant de l'usager : " + idUsager);
                                 Log.d(TAG, "Nom de l'usager : " + nomUsager);
 
-                                ((YambaApplication) getApplication()).getStatusData().insert(status);
+                                if (((YambaApplication) getApplication()).getStatusData().insert(status) != -1) {
+                                    newTootsCount++;
+                                }
 
                             } catch (ParseException e) {
                                 Log.d(TAG, "Thread run(): " + getString(R.string.exception), e);
                                 message[0] = getString(R.string.exception);
                                 updaterServiceIsRequesting = false;
                             }
-
                         });
+
+                        if (newTootsCount > 0) {
+                            sendBroadcast(new Intent("net.info420.yamba.action.BD_CHANGED").putExtra(
+                                    "newTootsCount", newTootsCount));
+                            newTootsCount = 0;
+                        }
+
                         long delay = Long.parseLong(((YambaApplication) getApplication()).getDelay()) * 1000;
                         Thread.sleep(delay);
                     } catch (BigBoneRequestException e) {
